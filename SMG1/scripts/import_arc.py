@@ -1,0 +1,153 @@
+import os
+
+from rarc import Rarc
+from yaz0 import Yaz0
+
+FILE_LIST = {
+  "nsw": (
+    "AbekobeBlockZone.arc",
+    "AbekobeDossunZone.arc",
+    "AbekobeRoofActionZone.arc",
+    "AbekobeStartZone.arc",
+    "AncientExcavationGalaxy.arc",
+    "AssemblyBlockCloudPlanetZone.arc",
+    "AtomicTeresaCircleZone.arc",
+    "BellyDragonLv1StartZone.arc",
+    "BellyDragonLv1Zone.arc",
+    "BigBigEndZone.arc",
+    "BigGalaxy.arc",
+    "BigPeanutPlanetZone.arc",
+    "BigTreePlanetWideZone.arc",
+    "BlueStarLaserPlanetZone.arc",
+    "ChallengeGliderGalaxy.arc",
+    "ChildRoomGalaxy.arc",
+    "Cloud2DPlanetZone.arc",
+    "CloudMarioMax2DPlanetZone.arc",
+    "CreekPlanetTestZone.arc",
+    "DarkRoadPlanetZone.arc",
+    "DashRingSwimZone.arc",
+    "DashYoshiBridgeSlopeZone.arc",
+    "DashYoshiWallClimbZone.arc",
+    "DigMineGalaxy.arc",
+    "DrillPearPlanetZone.arc",
+    "DrumActionPlanetZone.arc",
+    "DrumBegomanHoleZone.arc",
+    "DrumBombMazeZone.arc",
+    "EarthenPipeRoomCZone.arc",
+    "FireWoodBoxPlanetLv2Zone.arc",
+    "FireWoodBoxPlanetZone.arc",
+    "FlowerBeeTutorial00Zone.arc",
+    "FlowerWallJumpTutorial00Zone.arc",
+    "FollowerDrillTest1Zone.arc",
+    "GiantRotationPlanetZone.arc",
+    "GoroMarioHomeBZone.arc",
+    "GoroMarioHomeZone.arc",
+    "GoroRockGalaxy.arc",
+    "HipDropMovePlanetZone.arc",
+    "HoleSphere3Zone.arc",
+    "HoneyBeeClimbEasyZone.arc",
+    "HoneyBeeSmallVillageZone.arc",
+    "IslandFleetGalaxy.arc",
+    "JungleGliderGalaxy.arc",
+    "KachikochiLavaGalaxy.arc",
+    "KachiRelayPlanetZone.arc",
+    "KoopaFinalBattleZone.arc",
+    "KoopaJrCastleZone.arc",
+    "KoopaJrRobotZone.arc",
+    "KoopaLv1AZone.arc",
+    "KoopaLv1BattleZone.arc",
+    "KoopaLv1CZone.arc",
+    "KoopaLv1DZone.arc",
+    "KoopaLv2BattleZone.arc",
+    "KoopaLv3BattleZone.arc",
+    "KoopaLv3CZone.arc",
+    "LargeActionPlanetBZone.arc",
+    "LavaFluffFlyingPlanetZone.arc",
+    "LayoutMessage.arc",
+    "LongForCastleGalaxy.arc",
+    "MagicGalaxy.arc",
+    "MagicRelayPlanetZone.arc",
+    "ManekuriAZone.arc",
+    "MarioFaceShipZone.arc",
+    "MarioOnMarioGalaxy.arc",
+    "MokumokuValleyEndZone.arc",
+    "MokumokuValleyGalaxy.arc",
+    "MuimuiScoreLv1PlanetZone.arc",
+    "MuimuiScoreLv2PlanetZone.arc",
+    "MysteryCandyGalaxy.arc",
+    "MysteryCandyPlanetZone.arc",
+    "NewAquariumZone.arc",
+    "ObakeTowerPlanetZone.arc",
+    "OmoteuLandGalaxy.arc",
+    "OpeningCloudZone.arc",
+    "PeachCastle2DTicoMeetsZone.arc",
+    "PeachCastle2DZone.arc",
+    "PeachCastleTown3DZone.arc",
+    "PusherWallPlanetZone.arc",
+    "RabbitSkateTestZone.arc",
+    "RainbowGlassPlanetZone.arc",
+    "RedBlueBeamerPlanetZone.arc",
+    "RedBlueExGalaxy.arc",
+    "ReflectDrillZone.arc",
+    "RockBowlingLv1PlanetZone.arc",
+    "RollingDrumPlanetZone.arc",
+    "RosettaPlanetZone.arc",
+    "RotateWoodChallengeZone.arc",
+    "SceneCommonMessage.arc",
+    "ShortSwimCaveZone.arc",
+    "SmallRingPlatformZone.arc",
+    "StarCreekGalaxy.arc",
+    "SurvivalMerameraZone.arc",
+    "SwitchMoveBlockGalaxy.arc",
+    "SystemMessage.arc",
+    "TamakoroOnCylinderTestZone.arc",
+    "TamakoroSliderGalaxy.arc",
+    "TimerSwitchingPlatformGalaxy.arc",
+    "TropicalResortGalaxy.arc",
+    "TsuntsunBirdPlanetZone.arc",
+    "TubeSliderZone.arc",
+    "TwoSidesMazeOrgZone.arc",
+    "UnderGroundDangeonAZone.arc",
+    "VsKoopaGravityGalaxy.arc",
+    "VsKoopaJrLv3AZone.arc",
+    "VsKoopaLv1Galaxy.arc",
+    "VsKoopaLv3Galaxy.arc",
+    "WanwanFactoryAZone.arc",
+    "WanwanFactoryBZone.arc",
+    "WhiteSnowAPlanetZone.arc",
+    "WhiteSnowCPlanetZone.arc",
+    "WhiteSnowMistZone.arc",
+    "WhiteSnowStartZone.arc",
+    "YoshiCannonPlanetZone.arc",
+    "YoshiHomeAPlanetZone.arc",
+    "YoshiHomeBPlanetZone.arc",
+    "YoshiTicoRescueZone.arc",
+    "YosshiHomeGalaxy.arc",
+  ),
+}
+
+folder = "nsw"
+file_list = FILE_LIST["nsw"]
+for file_path in file_list:
+  with open(f"original_files/{folder}/{file_path}", "rb") as reader:
+    data = reader.read()
+
+  if data[:4] == b"Yaz0":
+    data = Yaz0.decompress(data, ">")
+    output_dir = f"unpacked/{folder}/{os.path.basename(file_path)}"
+    os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+    with open(output_dir, "wb") as writer:
+      writer.write(data)
+  rarc = Rarc(data)
+
+  for file in rarc.files:
+    replace_path = f"unpacked/{folder}/{os.path.basename(file_path).rsplit('.', 1)[0]}.d/{file.name}"
+    if not os.path.exists(replace_path):
+      continue
+    with open(replace_path, "rb") as reader:
+      file.data = reader.read()
+
+  output_dir = f"out/{file_path}"
+  os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+  with open(output_dir, "wb") as writer:
+    writer.write(rarc.save())
