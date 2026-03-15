@@ -1,0 +1,29 @@
+<wiidisc version="1" root="/patch">
+	<id game="SB4">
+		<region type="J"/>
+	</id>
+	<options>
+		<section name="SMG2">
+			<option name="Language">
+				<choice name="iQue">
+					<patch id="SY" />
+				</choice>
+				<choice name="Digital Hearts">
+					<patch id="DH" />
+				</choice>
+			</option>		
+		</section>
+	</options>
+	<patch id="SY">
+		<folder external="/iQue/sys" recursive="true" />
+		<folder external="/iQue/sys" disc="/" />
+		<folder external="/iQue/files" recursive="true"/>
+		<folder external="/iQue/files" disc="/"/>
+	</patch>
+	<patch id="DH">
+		<folder external="/Digital Hearts/sys" recursive="true" />
+		<folder external="/Digital Hearts/sys" disc="/" />
+		<folder external="/Digital Hearts/files" recursive="true"/>
+		<folder external="/Digital Hearts/files" disc="/"/>
+	</patch>
+</wiidisc>
