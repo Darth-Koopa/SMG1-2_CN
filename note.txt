@@ -1,0 +1,31 @@
+embedded message 存在dol文件里
+马银1（日）
+system.arc:0x53AA20h
+EmbeddedFont.arc:0x53CE20h
+
+马银2（台）
+64ABA0
+64B140
+
+马银2 日
+
+
+0202XP缺字：
+内删发开欧
+级莎菜裏银马
+
+马银1
+v0xzonn工具转换文本（信息错位）
+v1msbteditor工具转换文本（数据缺失）
+v2前两个合并
+v3按键批量替换
+v4残余日文替换成中文
+v5适配wii
+
+马银2
+1.ns版改识别符，导出kup
+2.kup导入wii
+3.ns版改尾序，截取文本拼合入2
+4.修改部分文本
+5.替换按键控制符
+6.适配wii
